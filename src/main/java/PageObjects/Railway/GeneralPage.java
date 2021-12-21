@@ -1,7 +1,8 @@
-package PageObjects;
+package PageObjects.Railway;
 
 import org.openqa.selenium.By;
-import org.opwnqa.selenium.WebElement;
+import org.openqa.selenium.WebElement;
+
 import Common.Constant.Constant;
 public class GeneralPage {
     //locators

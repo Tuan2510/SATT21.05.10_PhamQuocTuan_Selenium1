@@ -3,6 +3,6 @@ package Common.Common;
 public class Utilities {
 
     public static String getProjectPath() {
-        return "E:\\IdeaProject\\SeleniumLevel1";
+        return "E:\\IdeaProjects\\SeleniumLevel1\\src";
     }
 }

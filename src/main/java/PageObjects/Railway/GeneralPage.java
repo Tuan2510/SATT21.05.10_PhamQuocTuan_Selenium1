@@ -7,8 +7,11 @@ import Common.Constant.Constant;
 public class GeneralPage {
     //locators
     private final By tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
-    private final By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout.cshtml']");
+    private final By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
+    private final By tabBookTicket = By.xpath("//div[@id='menu']//a[@href='/Page/BookTicketPage.cshtml']");
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong");
+    private final By pageTitle = By.xpath("//div[@id='content']/h1");
+    private final By tabRegister = By.xpath("//div[@id='menu']//a[@href='/Account/Register.cshtml']");
 
     //elements
     protected WebElement getTabLogin(){
@@ -17,16 +20,37 @@ public class GeneralPage {
     protected WebElement getTabLogout(){
         return Constant.WEBDRIVER.findElement(tabLogout);
     }
+    protected WebElement getTabBookTicket(){
+        return Constant.WEBDRIVER.findElement(tabBookTicket);
+    }
     protected WebElement getLblWelcomeMessage(){
         return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
     }
+    protected WebElement getTitle(){ return Constant.WEBDRIVER.findElement(pageTitle); }
+    protected WebElement getTabRegister(){ return Constant.WEBDRIVER.findElement(tabRegister); }
 
     //methods
     public String getWelcomeMessage(){
         return this.getLblWelcomeMessage().getText();
     }
+    public void loggingOut(){
+        this.getTabLogout().click();
+    }
+
     public LoginPage gotoLoginPage(){
         this.getTabLogin().click();
         return new LoginPage();
+    }
+    public BookTicketPage gotoBookTicketPage(){
+        this.getTabBookTicket().click();
+        return new BookTicketPage();
+    }
+    public BookTicketPage gotoRegisterPage(){
+        this.getTabRegister().click();
+        return new BookTicketPage();
+    }
+
+    public String getPageTitle(){
+        return this.getTitle().getText();
     }
 }

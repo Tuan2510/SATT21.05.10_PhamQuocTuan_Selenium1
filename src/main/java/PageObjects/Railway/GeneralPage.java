@@ -12,6 +12,7 @@ public class GeneralPage {
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong");
     private final By pageTitle = By.xpath("//div[@id='content']/h1");
     private final By tabRegister = By.xpath("//div[@id='menu']//a[@href='/Account/Register.cshtml']");
+    private final By tabChangePassword = By.xpath("//div[@id='menu']//a[@href='/Account/ChangePassword.cshtml']");
 
     //elements
     protected WebElement getTabLogin(){
@@ -28,6 +29,7 @@ public class GeneralPage {
     }
     protected WebElement getTitle(){ return Constant.WEBDRIVER.findElement(pageTitle); }
     protected WebElement getTabRegister(){ return Constant.WEBDRIVER.findElement(tabRegister); }
+    protected WebElement getTabChangePassword(){ return Constant.WEBDRIVER.findElement(tabChangePassword); }
 
     //methods
     public String getWelcomeMessage(){
@@ -35,6 +37,9 @@ public class GeneralPage {
     }
     public void loggingOut(){
         this.getTabLogout().click();
+    }
+    public String getPageTitle(){
+        return this.getTitle().getText();
     }
 
     public LoginPage gotoLoginPage(){
@@ -49,8 +54,10 @@ public class GeneralPage {
         this.getTabRegister().click();
         return new BookTicketPage();
     }
-
-    public String getPageTitle(){
-        return this.getTitle().getText();
+    public ChangePasswordPage gotoChangePasswordPage(){
+        this.getTabChangePassword().click();
+        return new ChangePasswordPage();
     }
+
+
 }

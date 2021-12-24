@@ -12,6 +12,7 @@ public class RegisterPage {
     private final By txtPid = By.xpath("//input[@id='pid']");
     private final By btnRegister = By.xpath("//input[@value='Register']");
     private final By lblInformation = By.xpath("//div[@id='content']");
+    private final By lblMessageError = By.xpath("//p[@class='message error']");
 
     //elements
     protected WebElement getTxtEmail(){
@@ -32,6 +33,9 @@ public class RegisterPage {
     protected WebElement getLblInformation(){
         return Constant.WEBDRIVER.findElement(lblInformation);
     }
+    protected WebElement getLblMessageError(){
+        return Constant.WEBDRIVER.findElement(lblMessageError);
+    }
 
     //methods
     public HomePage register(String email, String password, String confirmPassword, String pid){
@@ -48,6 +52,14 @@ public class RegisterPage {
     public String getMessage(){
         try{
             return this.getLblInformation().getText();
+        }catch (Exception e){
+            return "";
+        }
+    }
+
+    public String getMessageError(){
+        try{
+            return this.getLblMessageError().getText();
         }catch (Exception e){
             return "";
         }

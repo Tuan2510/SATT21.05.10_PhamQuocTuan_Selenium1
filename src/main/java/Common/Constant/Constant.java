@@ -12,10 +12,14 @@ public class Constant {
     public static final String INVALID_USERNAME = "gmail.com";
 
     public static final String PASSWORD = "25102000";
+    public static final String PASSWORD2 = "251020000";
     public static final String BLANK_PASSWORD = "";
     public static final String INVALID_PASSWORD = "!@#$%^&*()";
 
     public static final String PID = "00000000";
     public static final String BLANK_PID = "";
     public static final String INVALID_PID = "12@@aa";
+
+    public static final String NEW_PASSWORD = "251020000";
+    public static final String INVALID_CONFIRM_PASSWORD = "25102000";
 }

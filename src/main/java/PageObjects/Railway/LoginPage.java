@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends GeneralPage{
     //locators
+    private final By tabHome = By.xpath("//a[@href='/Acount/Login/cshtml']");
     private final By txtUsername = By.xpath("//input[@id='username']");
     private final By txtPassword = By.xpath("//input[@id='password']");
     private final By btnLogin = By.xpath("//input[@value='login']");
@@ -32,8 +33,8 @@ public class LoginPage extends GeneralPage{
         //land on Home page
         return new HomePage();
     }
-    public HomePage logins(String username, String password, Integer times){
 
+    public HomePage logins(String username, String password, Integer times){
         for (int i = 0; i < times; i++) {
             //submit login credentials
             System.out.println("count: "+(i+1)+" times");
@@ -46,6 +47,11 @@ public class LoginPage extends GeneralPage{
     }
 
     public String getLoginErrorMsg(){
-        return this.getLblLoginErrorMsg().getText();
+        try{
+            return this.getLblLoginErrorMsg().getText();
+        }catch (Exception e){
+            return "";
+        }
     }
+
 }

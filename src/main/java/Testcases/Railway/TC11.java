@@ -11,10 +11,10 @@ public class TC11 extends TestBase{
     public void TC11(){
         System.out.println("TC11 - User can't create account while password and PID fields are empty");
         HomePage homePage = new HomePage();
-        homePage.open();
-
-        homePage.gotoRegisterPage();
         RegisterPage registerPage = new RegisterPage();
+
+        homePage.open();
+        homePage.gotoRegisterPage();
         registerPage.register(Constant.USERNAME, Constant.BLANK_PASSWORD,Constant.BLANK_PASSWORD,Constant.BLANK_PID);
 
         String actualMsg = registerPage.getMessageError();

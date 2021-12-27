@@ -12,10 +12,12 @@ public class TC08 extends TestBase{
     public void TC08(){
         System.out.println("TC08 - User can't login with an account hasn't been activated");
         HomePage homePage = new HomePage();
-        homePage.open();
-
         LoginPage loginPage = new LoginPage();
+
+        homePage.open();
+        homePage.gotoLoginPage();
         loginPage.login(Constant.USERNAME, Constant.PASSWORD);
+
         String actualMsg = loginPage.getLoginErrorMsg();
         String expectedMsg = "Invalid username or password. Please try again.";
 

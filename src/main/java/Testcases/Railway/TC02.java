@@ -11,10 +11,12 @@ public class TC02 extends TestBase{
     public void TC02(){
         System.out.println("TC02 - User can't login with blank \"Username\" textbox");
         HomePage homePage = new HomePage();
-        homePage.open();
-
         LoginPage loginPage = new LoginPage();
+
+        homePage.open();
+        homePage.gotoLoginPage();
         loginPage.login(Constant.BLANK_USERNAME, Constant.PASSWORD);
+
         String actualMsg = loginPage.getLoginErrorMsg();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
 

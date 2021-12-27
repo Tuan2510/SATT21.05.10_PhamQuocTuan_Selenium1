@@ -11,10 +11,12 @@ public class TC03 extends TestBase{
     public void TC03(){
         System.out.println("TC03 - User cannot log into Railway with invalid password ");
         HomePage homePage = new HomePage();
-        homePage.open();
-
         LoginPage loginPage = new LoginPage();
+
+        homePage.open();
+        homePage.gotoLoginPage();
         loginPage.login(Constant.USERNAME, Constant.INVALID_PASSWORD);
+
         String actualMsg = loginPage.getLoginErrorMsg();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
 

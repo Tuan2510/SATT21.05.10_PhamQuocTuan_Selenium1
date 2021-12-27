@@ -12,14 +12,13 @@ public class TC04 extends TestBase{
     public void TC04(){
         System.out.println("TC04 - User is redirected to Book ticket page after logging in ");
         HomePage homePage = new HomePage();
+        LoginPage loginPage = new LoginPage();
+
         homePage.open();
-
-        homePage.gotoBookTicketPage();//click book ticket - redirect to login page
-
-        LoginPage loginPage = new LoginPage();//login with valid username and password
+        homePage.gotoBookTicketPage();
         loginPage.login(Constant.USERNAME, Constant.PASSWORD);
 
-        String actualMsg = loginPage.getPageTitle();//get title og book ticket page
+        String actualMsg = loginPage.getPageTitle();
         String expectedMsg = "Book ticket";
 
         Assert.assertEquals(actualMsg, expectedMsg, "Error that User is not directed to Login page.");

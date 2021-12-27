@@ -38,15 +38,13 @@ public class RegisterPage {
     }
 
     //methods
-    public HomePage register(String email, String password, String confirmPassword, String pid){
+    public void register(String email, String password, String confirmPassword, String pid){
         //submit login credentials
         this.getTxtEmail().sendKeys(email);
         this.getTxtPassword().sendKeys(password);
         this.getTxtConfirmPassword().sendKeys(confirmPassword);
         this.getTxtPid().sendKeys(pid);
         this.getBtnRegister().click();
-        //land on Home page
-        return new HomePage();
     }
 
     public String getMessage(){
@@ -64,4 +62,5 @@ public class RegisterPage {
             return "";
         }
     }
+
 }

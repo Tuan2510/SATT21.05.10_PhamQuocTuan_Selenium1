@@ -12,15 +12,14 @@ public class TC06 extends TestBase{
     public void TC06(){
         System.out.println("TC06 - User is redirected to Home page after logging out ");
         HomePage homePage = new HomePage();
-        homePage.open();
-        //login
         LoginPage loginPage = new LoginPage();
+
+        homePage.open();
+        homePage.gotoLoginPage();
         loginPage.login(Constant.USERNAME, Constant.PASSWORD);
-        //logout
-        GeneralPage generalPage = new GeneralPage();
-        generalPage.loggingOut();
-        //get title
-        String actualMsg = generalPage.getPageTitle();
+        homePage.loggingOut();
+
+        String actualMsg = homePage.getPageTitle();
         String expectedMsg = "Welcome to Safe Railway";
 
         Assert.assertEquals(actualMsg, expectedMsg, "Error that user cannot logging out.");

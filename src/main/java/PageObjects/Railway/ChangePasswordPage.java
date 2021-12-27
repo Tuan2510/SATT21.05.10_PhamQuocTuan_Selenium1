@@ -30,15 +30,12 @@ public class ChangePasswordPage {
     }
 
     //methods
-    public HomePage changePassword(String currentPS, String newPS, String confirmPS){
+    public void changePassword(String currentPS, String newPS, String confirmPS){
         //submit login credentials
         this.getTxtCurrentPassword().sendKeys(currentPS);
         this.getTxtNewPassword().sendKeys(newPS);
         this.getTxtConfirmPassword().sendKeys(confirmPS);
         this.getBtnChangePassword().click();
-
-        //land on Home page
-        return new HomePage();
     }
 
     public String getMessageError(){
@@ -48,4 +45,5 @@ public class ChangePasswordPage {
             return "";
         }
     }
+
 }

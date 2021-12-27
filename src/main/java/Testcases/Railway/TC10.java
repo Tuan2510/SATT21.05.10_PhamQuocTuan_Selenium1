@@ -11,10 +11,10 @@ public class TC10 extends TestBase{
     public void TC10(){
         System.out.println("TC10 - User can't create account with an already in-use email");
         HomePage homePage = new HomePage();
-        homePage.open();
-
-        homePage.gotoRegisterPage();
         RegisterPage registerPage = new RegisterPage();
+
+        homePage.open();
+        homePage.gotoRegisterPage();
         registerPage.register(Constant.USERNAME, Constant.PASSWORD2,Constant.PASSWORD2,Constant.PID);
 
         String actualMsg = registerPage.getMessageError();

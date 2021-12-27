@@ -11,10 +11,12 @@ public class TC05 extends TestBase{
     public void TC05(){
         System.out.println("TC05 - System shows message when user enters wrong password several times ");
         HomePage homePage = new HomePage();
-        homePage.open();
-
         LoginPage loginPage = new LoginPage();
+
+        homePage.open();
+        homePage.gotoLoginPage();
         loginPage.logins(Constant.USERNAME, Constant.INVALID_PASSWORD,4);
+
         String actualMsg = loginPage.getLoginErrorMsg();
         String expectedMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
 

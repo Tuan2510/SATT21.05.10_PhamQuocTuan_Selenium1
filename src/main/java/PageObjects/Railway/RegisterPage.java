@@ -4,7 +4,7 @@ import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class RegisterPage {
+public class RegisterPage extends GeneralPage{
     //locators
     private final By txtEmail = By.xpath("//input[@id='email']");
     private final By txtPassword = By.xpath("//input[@id='password']");
@@ -13,6 +13,8 @@ public class RegisterPage {
     private final By btnRegister = By.xpath("//input[@value='Register']");
     private final By lblInformation = By.xpath("//div[@id='content']");
     private final By lblMessageError = By.xpath("//p[@class='message error']");
+    private final By lblPasswordMessageError = By.xpath("//label[@for='password' and @class='validation-error']");
+    private final By lblPIDMessageError = By.xpath("//label[@for='pid' and @class='validation-error']");
 
     //elements
     protected WebElement getTxtEmail(){
@@ -35,6 +37,14 @@ public class RegisterPage {
     }
     protected WebElement getLblMessageError(){
         return Constant.WEBDRIVER.findElement(lblMessageError);
+    }
+
+    protected WebElement getLblPasswordMessageError(){
+        return Constant.WEBDRIVER.findElement(lblPasswordMessageError);
+    }
+
+    protected WebElement getLblPIDMessageError(){
+        return Constant.WEBDRIVER.findElement(lblPIDMessageError);
     }
 
     //methods
@@ -62,5 +72,22 @@ public class RegisterPage {
             return "";
         }
     }
+
+    public String getPasswordMessageError(){
+        try{
+            return this.getLblPasswordMessageError().getText();
+        }catch (Exception e){
+            return "";
+        }
+    }
+
+    public String getPIDMessageError(){
+        try{
+            return this.getLblPIDMessageError().getText();
+        }catch (Exception e){
+            return "";
+        }
+    }
+
 
 }

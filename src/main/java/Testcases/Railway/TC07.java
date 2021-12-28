@@ -19,7 +19,7 @@ public class TC07 extends GeneralPage{
         registerPage.register("6@gmail.com",Constant.PASSWORD,Constant.PASSWORD,Constant.PID);
 
         String actualMsg = registerPage.getMessage();
-        String expectedMsg = "Registration Confirmed! You can now log in to the site.";
+        String expectedMsg = "Thank you for registering your account.";
 
         Assert.assertEquals(actualMsg, expectedMsg, "Error that user cannot register an account.");
     }

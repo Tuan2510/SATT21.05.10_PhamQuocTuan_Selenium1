@@ -3,6 +3,7 @@ package PageObjects.Railway;
 import Common.Constant.Constant;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 public class MyTicketPage {
@@ -16,11 +17,21 @@ public class MyTicketPage {
 
     //methods
     public void clickCancelButton(){
-        this.getBtnCancelTicket().click();
+        try {
+            WebElement btnCancel = this.getBtnCancelTicket();
+            ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", btnCancel);
+            btnCancel.click();
+        }catch (Exception e){
+            System.out.println("Cannot locate 'Cancel' button because it not exits in form");
+        }
     }
 
     public void clickOKAlert(){
-        Alert al = Constant.WEBDRIVER.switchTo().alert();
-        al.accept();
+        try {
+            Alert alert = Constant.WEBDRIVER.switchTo().alert();
+            alert.accept();
+        }catch (Exception e){
+            System.out.println("Cannot locate 'OK' button in alert notification");
+        }
     }
 }

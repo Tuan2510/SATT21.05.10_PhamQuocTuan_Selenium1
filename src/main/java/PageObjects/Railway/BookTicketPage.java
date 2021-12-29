@@ -2,6 +2,7 @@ package PageObjects.Railway;
 
 import Common.Constant.Constant;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -42,11 +43,26 @@ public class BookTicketPage extends GeneralPage{
 
     public void bookTicket(String departDate, String departStation, String arriveStation, String seatType, String ticketAmount){
         try {
-            this.getDdlDepartDate().selectByVisibleText(departDate);
-            this.getDdlDepartStation().selectByVisibleText(departStation);
-            this.getDdlArriveStation().selectByVisibleText(arriveStation);
-            this.getDdlSeatType().selectByVisibleText(seatType);
-            this.getDdlTicketAmount().selectByVisibleText(ticketAmount);
+            Select dllDepartD = this.getDdlDepartDate();
+            ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllDepartD);
+            dllDepartD.selectByVisibleText(departDate);
+
+            Select dllDepartS = this.getDdlDepartStation();
+            ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllDepartS);
+            dllDepartS.selectByVisibleText(departStation);
+
+            Select dllArriveS = this.getDdlArriveStation();
+            ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllArriveS);
+            dllArriveS.selectByVisibleText(arriveStation);
+
+            Select dllSeat = this.getDdlSeatType();
+            ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllSeat);
+            dllSeat.selectByVisibleText(seatType);
+
+            Select dllAmount = this.getDdlTicketAmount();
+            ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllAmount);
+            dllAmount.selectByVisibleText(ticketAmount);
+
             this.getBtnBookTicket().click();
         }catch (Exception e){
             System.out.println("Cannot chose an option in book ticket form!");

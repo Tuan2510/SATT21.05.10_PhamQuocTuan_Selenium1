@@ -20,8 +20,9 @@ public class TC06 extends TestBase{
         homePage.loggingOut();
 
         String actualMsg = homePage.getPageTitle();
-        String expectedMsg = "Welcome to Safe Railway";
+        String expectedMsg = Constant.HOME_PAGE_TITLE;
 
+        Assert.assertFalse(homePage.isDisplayedTabLogout(),"Tab Logout is not disappear after logging out");
         Assert.assertEquals(actualMsg, expectedMsg, "Error that user cannot logging out.");
     }
 }

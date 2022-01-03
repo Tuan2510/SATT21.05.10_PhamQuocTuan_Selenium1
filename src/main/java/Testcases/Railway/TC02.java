@@ -15,7 +15,7 @@ public class TC02 extends TestBase{
 
         homePage.open();
         homePage.gotoLoginPage();
-        loginPage.login(Constant.BLANK_USERNAME, Constant.PASSWORD);
+        loginPage.login("", Constant.PASSWORD);
 
         String actualMsg = loginPage.getLoginErrorMsg();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";

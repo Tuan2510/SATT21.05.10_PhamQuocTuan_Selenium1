@@ -15,7 +15,7 @@ public class TC11 extends TestBase{
 
         homePage.open();
         homePage.gotoRegisterPage();
-        registerPage.register(Constant.USERNAME, Constant.BLANK_PASSWORD,Constant.BLANK_PASSWORD,Constant.BLANK_PID);
+        registerPage.register(Constant.USERNAME, "","",Constant.BLANK_PID);
 
         String actualErrorMsg = registerPage.getMessageError();
         String expectedErrorMsg = "There're errors in the form. Please correct the errors and try again.";

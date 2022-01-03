@@ -16,11 +16,15 @@ public class TC04 extends TestBase{
 
         homePage.open();
         homePage.gotoBookTicketPage();
+
+        String actualLoginTitle = homePage.getPageTitle();
+        String expectedLoginTitle = Constant.LOGIN_PAGE_TITLE;
         loginPage.login(Constant.USERNAME, Constant.PASSWORD);
 
-        String actualMsg = loginPage.getPageTitle();
-        String expectedMsg = "Book ticket";
+        String actualTitle = homePage.getPageTitle();
+        String expectedTitle = Constant.BOOK_TICKET_PAGE_TITLE;
 
-        Assert.assertEquals(actualMsg, expectedMsg, "Error that User is not directed to Login page.");
+        Assert.assertEquals(actualLoginTitle,expectedLoginTitle, "Error that User is not directed to Login page.");
+        Assert.assertEquals(actualTitle,expectedTitle, "Error that User is not directed to Book Ticket page.");
     }
 }

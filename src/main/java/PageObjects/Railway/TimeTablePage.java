@@ -1,10 +1,9 @@
 package PageObjects.Railway;
 
 import Common.Constant.Constant;
+import Common.Utils.Utils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 public class TimeTablePage extends GeneralPage{
     //locators
@@ -18,12 +17,12 @@ public class TimeTablePage extends GeneralPage{
     //methods
     public void gotoTicketPrice(){
         try {
-            WebElement link = this.getLnkCheckPrice();
-            ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", link);
-            link.click();
+            WebElement linkCheckPrice = this.getLnkCheckPrice();
+            Utils utils = new Utils();
+            utils.scrollDownToElement(linkCheckPrice);
+            linkCheckPrice.click();
         }catch (Exception e){
-            System.out.println("Cannot navigate to Ticket Price page");
-            e.printStackTrace();
+            System.out.println("Unable to get 'Check Price' link");
         }
     }
 

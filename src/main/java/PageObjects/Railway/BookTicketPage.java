@@ -20,7 +20,8 @@ public class BookTicketPage extends GeneralPage{
     private final By tdArriveStation = By.xpath("//div[@class='DivTable']//tr[@class='OddRow']//td[count(//div[@class='DivTable']//tr[@class='TableSmallHeader']//th[text()='Arrive Station']/preceding-sibling::th)+1]");
     private final By tdSeatType = By.xpath("//div[@class='DivTable']//tr[@class='OddRow']//td[count(//div[@class='DivTable']//tr[@class='TableSmallHeader']//th[text()='Seat Type']/preceding-sibling::th)+1]");
     private final By tdTicketAmount = By.xpath("//div[@class='DivTable']//tr[@class='OddRow']//td[count(//div[@class='DivTable']//tr[@class='TableSmallHeader']//th[text()='Amount']/preceding-sibling::th)+1]");
-
+    private final By lblMessageError = By.xpath("//div/p[@class='message error']");
+    private final By lblTicketAmountValidationError = By.xpath("//li/label[text()='Ticket amount:']/following-sibling::label[@class='validation-error']");
     //Elements
     protected Select getDdlDepartDate(){ return new Select(Constant.WEBDRIVER.findElement(ddlDepartDate)); }
     protected Select getDdlDepartStation(){ return new Select(Constant.WEBDRIVER.findElement(ddlDepartStation));}
@@ -34,7 +35,8 @@ public class BookTicketPage extends GeneralPage{
     protected WebElement getTdTicketAmount(){ return Constant.WEBDRIVER.findElement(tdTicketAmount); }
     protected WebElement getBtnBookTicket(){ return Constant.WEBDRIVER.findElement(btnBookTicket); }
     protected WebElement getLblBookSuccessfully(){ return Constant.WEBDRIVER.findElement(btnBookTicket); }
-
+    protected WebElement getLblErrorMessage(){ return Constant.WEBDRIVER.findElement(lblMessageError); }
+    protected WebElement getLblTicketAmountValidationError(){ return Constant.WEBDRIVER.findElement(lblTicketAmountValidationError); }
 
     //Methods
     public void open(){
@@ -45,27 +47,60 @@ public class BookTicketPage extends GeneralPage{
         try {
             Select dllDepartD = this.getDdlDepartDate();
             ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllDepartD);
-            dllDepartD.selectByVisibleText(departDate);
+            dllDepartD.selectByVisibleText(departDate);Thread.sleep(2000);
 
             Select dllDepartS = this.getDdlDepartStation();
             ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllDepartS);
-            dllDepartS.selectByVisibleText(departStation);
+            dllDepartS.selectByVisibleText(departStation);Thread.sleep(2000);
 
             Select dllArriveS = this.getDdlArriveStation();
             ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllArriveS);
-            dllArriveS.selectByVisibleText(arriveStation);
+            dllArriveS.selectByVisibleText(arriveStation);Thread.sleep(2000);
 
             Select dllSeat = this.getDdlSeatType();
             ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllSeat);
-            dllSeat.selectByVisibleText(seatType);
+            dllSeat.selectByVisibleText(seatType);Thread.sleep(2000);
 
             Select dllAmount = this.getDdlTicketAmount();
             ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllAmount);
             dllAmount.selectByVisibleText(ticketAmount);
-
+            Thread.sleep(5000);
             this.getBtnBookTicket().click();
         }catch (Exception e){
             System.out.println("Cannot chose an option in book ticket form!");
+            e.printStackTrace();
+        }
+    }
+
+    public void bookTicketMultipleTimes(String departDate, String departStation, String arriveStation, String seatType, String ticketAmount,Integer times){
+        try {
+            for (int i = 0; i < times; i++) {
+                this.gotoBookTicketPage();
+                Select dllDepartD = this.getDdlDepartDate();
+                ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllDepartD);
+                dllDepartD.selectByVisibleText(departDate);Thread.sleep(2000);
+
+                Select dllDepartS = this.getDdlDepartStation();
+                ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllDepartS);
+                dllDepartS.selectByVisibleText(departStation);Thread.sleep(2000);
+
+                Select dllArriveS = this.getDdlArriveStation();
+                ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllArriveS);
+                dllArriveS.selectByVisibleText(arriveStation);Thread.sleep(2000);
+
+                Select dllSeat = this.getDdlSeatType();
+                ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllSeat);
+                dllSeat.selectByVisibleText(seatType);Thread.sleep(2000);
+
+                Select dllAmount = this.getDdlTicketAmount();
+                ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", dllAmount);
+                dllAmount.selectByVisibleText(ticketAmount);
+                Thread.sleep(2000);
+                this.getBtnBookTicket().click();
+            }
+        }catch (Exception e){
+            System.out.println("Cannot chose an option in book ticket form!");
+            e.printStackTrace();
         }
     }
 
@@ -112,6 +147,21 @@ public class BookTicketPage extends GeneralPage{
     public String getTicketAmount(){
         try{
             return this.getTdTicketAmount().getText();
+        }catch (Exception e){
+            return "";
+        }
+    }
+
+    public String getErrorMessage(){
+        try{
+            return this.getLblErrorMessage().getText();
+        }catch (Exception e){
+            return "";
+        }
+    }
+    public String getTicketAmountValidationErrorMessage(){
+        try{
+            return this.getLblTicketAmountValidationError().getText();
         }catch (Exception e){
             return "";
         }
